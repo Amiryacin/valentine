@@ -1,155 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine?</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: pink;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-        h1 {
-            color: red;
-            font-size: 36px;
-            animation: heartbeat 1.5s infinite;
-            z-index: 10;
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .buttons {
-            margin-top: 20px;
-            z-index: 10;
-        }
-        button {
-            font-size: 20px;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 10px;
-            transition: transform 0.2s, font-size 0.2s;
-        }
-        #yes {
-            background-color: red;
-            color: white;
-        }
-        #no {
-            background-color: white;
-            color: red;
-        }
-        .hidden {
-            display: none;
-            font-size: 24px;
-            color: white;
-            margin-top: 20px;
-            animation: fadeIn 2s;
-            z-index: 10;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .floating-images {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            animation: float 10s infinite;
-        }
-        .image1 {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        .image2 {
-            top: 30%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-        .image3 {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-        .image4 {
-            bottom: 10%;
-            right: 10%;
-            animation-delay: 6s;
-        }
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-            100% { transform: translateY(0) scale(1); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;height:100vh;overflow:hidden;font-family:'Poppins',sans-serif;background:radial-gradient(circle at top,#ff9a9e,#fad0c4);display:flex;align-items:center;justify-content:center;position:relative}
+.container{background:rgba(255,255,255,.25);backdrop-filter:blur(12px);border-radius:28px;padding:35px 28px;text-align:center;box-shadow:0 25px 50px rgba(0,0,0,.25);z-index:5;max-width:92vw}
+h1{font-size:36px;font-weight:800;color:#d6004c;animation:heartbeat 1.5s infinite}
+@keyframes heartbeat{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.buttons{margin-top:25px;position:relative;height:80px}
+button{padding:15px 30px;font-size:18px;border-radius:999px;border:none;cursor:pointer;font-weight:600;transition:all .25s ease}
+#yes{background:linear-gradient(135deg,#ff4d6d,#ff758f);color:white}
+#no{background:white;color:#ff4d6d;position:absolute;right:-120px;top:0}
+#think{background:#ffd6e0;color:#b0003a;margin-top:15px}
+.thankyou{font-size:22px;font-weight:600;color:white;margin-top:25px;animation:fadeUp 1.2s}
+.hidden{display:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.photo{position:absolute;width:95px;height:95px;border-radius:16px;object-fit:cover;box-shadow:0 10px 25px rgba(0,0,0,.3);animation:float 18s linear infinite}
+.p1{top:8%;left:6%}.p2{top:18%;right:8%}.p3{bottom:15%;left:10%}.p4{bottom:10%;right:12%}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-35px)}100%{transform:translateY(0)}}
+.heart{position:absolute;font-size:24px;animation:heartFloat 4s ease forwards}
+@keyframes heartFloat{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-120px) scale(1.4)}}
+.map{margin-top:15px;border-radius:16px;overflow:hidden}
+@media(max-width:600px){h1{font-size:28px}button{font-size:16px;padding:14px 26px}}
+</style>
 </head>
 <body>
-    <h1>Will you be my Valentine? ❤️</h1>
-    <div class="buttons">
-        <button id="yes" onclick="acceptLove()">Yes</button>
-        <button id="no" onclick="makeYesBigger()">No</button>
-    </div>
-    <p id="message" class="hidden">Thank you! Love you so much! ❤️😍<br>Can't wait for the best weekend in Rennes with you! 🥰</p>
 
-    <!-- Floating Images -->
-    <img src="/H.jpg" alt="Us together 1" class="floating-images image1">
-    <img src="/C.jpg" alt="Us together 2" class="floating-images image2">
-    <img src="/S.jpg" alt="Us together 3" class="floating-images image3">
-    <img src="/A.jpg" alt="Us together 4" class="floating-images image4">
+<img src="/D.jpeg" class="photo p1"><img src="/C.jpg" class="photo p2">
+<img src="/b.jpeg" class="photo p3"><img src="/A.jpeg" class="photo p4">
 
-    <form id="valentineForm">
-        <input type="hidden" name="message" value="Yes, I'll be your Valentine!">
-        <input type="hidden" name="email" value="amiryacin46@gmail.com">
-    </form>
-    
-    <script>
-        let yesButton = document.getElementById("yes");
-        let noButton = document.getElementById("no");
-        let message = document.getElementById("message");
-        let form = document.getElementById("valentineForm");
-        let yesSize = 20;
-    
-        function makeYesBigger() {
-            yesSize += 10;
-            yesButton.style.fontSize = yesSize + "px";
-            yesButton.style.transform = "scale(1.1)";
-        }
-    
-        function acceptLove() {
-            // Show the custom "Thank You" message
-            message.classList.remove("hidden");
-            document.querySelector(".buttons").style.display = "none";
-    
-            // Submit the form data using fetch
-            const formData = new FormData(form);
-    
-            fetch("https://formspree.io/f/mkgobrza", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    Accept: "application/json"
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    console.error("Failed to submit form!");
-                }
-            })
-            .catch(error => console.error("An error occurred:", error));
-        }
-    </script>
-    
-    
+<div class="container">
+<h1 id="title">Hodo, will you be my Valentine? ❤️</h1>
+<div class="buttons" id="buttons">
+<button id="yes" onclick="acceptLove()">YES 💘</button>
+<button id="no" onclick="runAway()">No 😅</button>
+</div>
+<button id="think" onclick="disappearThink()">Let me think… ⏳</button>
+<div id="message" class="thankyou hidden"></div>
+</div>
+
+<audio id="music" src="/love.mp3"></audio>
+
+<form id="valentineForm"><input type="hidden" name="message" value="She said YES ❤️"></form>
+<form id="refuseForm"><input type="hidden" name="message" value="She said NO ❌"></form>
+
+<script>
+const yesBtn=document.getElementById('yes');
+const noBtn=document.getElementById('no');
+const msg=document.getElementById('message');
+const buttons=document.getElementById('buttons');
+const music=document.getElementById('music');
+const formYes=document.getElementById('valentineForm');
+const formNo=document.getElementById('refuseForm');
+let noCount=0,yesScale=1;
+
+const noMessages=[
+"Hey Hodo… really? 😐",
+"You sure about that, Hodo? 😏",
+"Stop playing Hodo 😌",
+"Okay now you’re teasing 😍",
+"Last chance Hodo… 😈"
+];
+
+function runAway(){
+  noCount++;
+  if(navigator.vibrate) navigator.vibrate(60);
+  if(noCount>=5){ showDefinitiveNo(); return; }
+  noBtn.style.left=Math.random()*200-100+'px';
+  noBtn.style.top=Math.random()*120-60+'px';
+  yesScale+=0.25;
+  yesBtn.style.transform=`scale(${yesScale})`;
+  spawnHeart();
+  document.getElementById('title').innerText=noMessages[Math.min(noCount-1,noMessages.length-1)];
+}
+
+function disappearThink(){
+  document.getElementById('think').style.display='none';
+  spawnHeart();
+}
+
+function acceptLove(){
+  buttons.style.display='none';
+  document.getElementById('think').style.display='none';
+  document.getElementById('title').innerText = "Hooray!!! 🎉💖";
+  msg.classList.remove('hidden');
+  msg.innerHTML="She accepted 😍💞<br>Best weekend in <b>Rennes ❤️</b> incoming ✨🍷"+
+  "<div class='map'><iframe width='100%' height='160' style='border:0' loading='lazy' allowfullscreen src='https://www.google.com/maps?q=Rennes&output=embed'></iframe></div>";
+  burstHearts();
+  music.play();
+  fetch('https://formspree.io/f/mkgobrza',{method:'POST',body:new FormData(formYes),headers:{Accept:'application/json'}});
+}
+
+function regretYes(){
+  document.getElementById('title').innerText = "Amir is sad 😢";
+  acceptLove();
+}
+
+function showDefinitiveNo(){
+  buttons.style.display='none';
+  document.getElementById('think').style.display='none';
+  document.getElementById('title').innerText = "Last chance Hodo… 😈";
+  msg.classList.remove('hidden');
+  msg.innerHTML=`<div style='font-size:16px;margin-bottom:18px'>I will send to Amir that you said no.<br>Are you sure?</div>
+  <button onclick="sendFinalNo()" style="margin:10px;padding:12px 22px;border-radius:999px;border:none;background:#444;color:white">Yes, I’m sure ❌</button>
+  <button onclick="regretYes()" style="margin:10px;padding:14px 26px;border-radius:999px;border:none;background:#ff4d6d;color:white">Ok sorry… YES 💘</button>`;
+}
+
+function sendFinalNo(){
+  document.getElementById('title').innerText = "Amir is sad 😢";
+  msg.innerHTML="💔 She really said no…";
+  fetch('https://formspree.io/f/mkgobrza',{method:'POST',body:new FormData(formNo),headers:{Accept:'application/json'}});
+}
+
+function spawnHeart(){
+  const h=document.createElement('div');
+  h.className='heart';
+  h.innerText='❤️';
+  h.style.left=Math.random()*100+'vw';
+  h.style.top='70%';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+}
+
+function burstHearts(){
+  for(let i=0;i<30;i++) setTimeout(spawnHeart,i*100);
+}
+</script>
 </body>
 </html>
